@@ -17,11 +17,9 @@ public class ToggleConfiguration {
 	ToggleRepository toggleRepo;
 
 	public boolean getFeatureToggleState(String featureName) {
-		String featureEnabledPath = featureName + ".enabled";
-
-		Feature feature = toggleRepo.getFeatureByKey(featureEnabledPath);
+		Feature feature = toggleRepo.getFeatureByKey(featureName);
 		log.info(feature.getFeatureKey() + " : " + feature.getFeatureValue());
-		log.info("Feature : " + featureEnabledPath + feature.getFeatureValue());
+		log.info("Feature : " + featureName + feature.getFeatureValue());
 		return feature.getFeatureValue();
 	}
 }
