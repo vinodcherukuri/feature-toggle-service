@@ -16,10 +16,13 @@ public class ToggleConfiguration {
 	@Autowired
 	ToggleRepository toggleRepo;
 
-	public boolean getFeatureToggleState(String featureName) {
-		Feature feature = toggleRepo.getFeatureByKey(featureName);
-		log.info(feature.getFeatureKey() + " : " + feature.getFeatureValue());
-		log.info("Feature : " + featureName + " : " + feature.getFeatureValue());
-		return feature.getFeatureValue();
+	public boolean getFeatureToggleState(String featureKey) {
+		Feature feature = toggleRepo.getFeatureByKey(featureKey);
+		Boolean featureValue = false;
+		if (feature != null) {
+			featureValue = feature.getFeatureValue();
+		}
+		log.info("Feature : " + featureKey + " : " + featureValue);
+		return featureValue;
 	}
 }
