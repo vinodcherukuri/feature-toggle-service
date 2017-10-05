@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @Entity
-@Table(name = "feature")
+@Table(name = "feature", schema = "public")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Feature {
 
