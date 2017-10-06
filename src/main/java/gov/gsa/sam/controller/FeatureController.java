@@ -57,4 +57,20 @@ public class FeatureController {
 		toggleRepo.saveAndFlush(feature);
 		return new ResponseEntity<Feature>(feature, HttpStatus.CREATED);
 	}
+	
+	/**
+     * API endpoint to insert/update featureKey values to true/false.
+     * 
+     * @param feature
+     * @return
+     */
+    @RequestMapping(value = "/getftstatus/{key}", method = RequestMethod.GET)
+    public ResponseEntity<String> isEnabled(@ApiParam(value = "key", required = true) @PathVariable String key) {
+        log.info("request received to get feature toggle status");
+        Feature feature = toggleRepo.getFeatureByKey(key);
+        if(feature != null && feature.getFeatureValue() != null)
+            return new ResponseEntity<String>(Boolean.toString(feature.getFeatureValue()), HttpStatus.CREATED);
+        else 
+            return new ResponseEntity<String>("false", HttpStatus.CREATED);
+    }
 }
